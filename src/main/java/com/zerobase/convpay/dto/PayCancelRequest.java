@@ -9,15 +9,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PayRequest {
+public class PayCancelRequest {
 
     // 결제 수단
     PayMethodType payMethodType;
     // 편의점 종류
     ConvenienceType convenienceType;
 
-    // 결제 금액
-    Integer payAmount;
-
-
+    // 결제 취소 금액
+    Integer PayCancelAmount;
 }
