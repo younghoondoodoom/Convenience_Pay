@@ -8,13 +8,20 @@ import com.zerobase.convpay.dto.PayResponse;
 import com.zerobase.convpay.type.PayCancelResult;
 import com.zerobase.convpay.type.PayMethodType;
 import com.zerobase.convpay.type.PayResult;
+import java.util.Arrays;
+import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConveniencePayServiceTest {
 
-    ConveniencePayService conveniencePayService = new ConveniencePayService();
+    ConveniencePayService conveniencePayService = new ConveniencePayService(
+        new HashSet<>(
+            Arrays.asList(new MoneyAdapter(), new CardAdapter())
+        ),
+        new DiscountByConvenience()
+    );
 
     @Test
     public void pay_success() throws Exception {
@@ -26,7 +33,7 @@ class ConveniencePayServiceTest {
 
         //then
         assertEquals(PayResult.SUCCESS, payResponse.getPayResult());
-        assertEquals(35, payResponse.getPaidAmount());
+        assertEquals(40, payResponse.getPaidAmount());
 
     }
 
